@@ -30,8 +30,10 @@ img {
 #list_item {
     border-style: solid;
     border-width: 1px;
-    margin: 2px;
+    margin: auto;
+    margin-top: 2px;
     width:500px;
+
 }
 
 </style>

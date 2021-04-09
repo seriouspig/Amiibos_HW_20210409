@@ -6,7 +6,7 @@
     :amiibos="amiibos" 
     :series="series[index]"></filter-button>
     </div>
-    <amiibo-details  v-if="selectedAmiibo" :selectedAmiibo="selectedAmiibo"></amiibo-details>
+    <amiibo-details  id="details" v-if="selectedAmiibo" :selectedAmiibo="selectedAmiibo"></amiibo-details>
     <amiibos-list :amiibos="filteredAmiibos"></amiibos-list>
   </div>
 </template>
@@ -67,6 +67,10 @@ export default {
       }
       
       console.log(this.filteredAmiibos)
+    }),
+
+    eventBus.$on('close-Window', () => {
+      this.selectedAmiibo = null
     })
   },
   methods: {
@@ -94,5 +98,9 @@ export default {
 #filters{
   top: 0px;
   position: fixed;
+}
+
+#details{
+  margin: auto;
 }
 </style>
