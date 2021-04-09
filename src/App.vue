@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <h1>AMIIBOS</h1>
+    <div id="filters">
     <filter-button v-for="(serie, index) in series" :serie="serie" :key="index"
     :amiibos="amiibos" 
     :series="series[index]"></filter-button>
+    </div>
+    <amiibo-details  v-if="selectedAmiibo" :selectedAmiibo="selectedAmiibo"></amiibo-details>
     <amiibos-list :amiibos="filteredAmiibos"></amiibos-list>
   </div>
 </template>
@@ -13,6 +16,7 @@ import {eventBus} from './main.js'
 
 import AmiibosList from './components/AmiibosList.vue'
 import SeriesFilter from './components/SeriesFilter.vue'
+import AmiiboDetails from './components/AmiiboDetails.vue'
 
 export default {
   name: 'App',
@@ -20,14 +24,16 @@ export default {
     return {
       amiibos: [],
       series: [],
-      filteredAmiibos: []
+      filteredAmiibos: [],
+      selectedAmiibo: null
  
 
     }
   },
   components: {
     'amiibos-list': AmiibosList,
-    'filter-button': SeriesFilter
+    'filter-button': SeriesFilter,
+    'amiibo-details': AmiiboDetails
   },
   async mounted() {
     const res = await fetch('https://www.amiiboapi.com/api/amiibo/')
@@ -47,6 +53,10 @@ export default {
     const uniqueType = [...new Set(this.amiibos.map(item => item.type))]
     console.log(uniqueType)
     console.log(this.amiibos[603].name)
+
+    eventBus.$on('amiibo-selected', (amiibo) => {
+      this.selectedAmiibo = amiibo
+    })
 
     eventBus.$on('series-selected', (series) => {
       if (series==="ALL") {
@@ -79,5 +89,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#filters{
+  top: 0px;
+  position: fixed;
 }
 </style>
