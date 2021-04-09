@@ -1,5 +1,8 @@
 <template>
-  <section>{{amiibo.name}} from {{amiibo.amiiboSeries}}</section>
+  <section>
+      {{amiibo.name}} from {{amiibo.amiiboSeries}}
+      <img :src="amiibo.image" alt="amiibo_image">
+  </section>
 </template>
 
 <script>
@@ -10,6 +13,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+img {
+    height: 50px;
+}
 
 </style>
