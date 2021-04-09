@@ -1,17 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>AMIIBOS</h1>
+    <amiibos-list :amiibos="amiibos"></amiibos-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AmiibosList from './components/AmiibosList.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      amiibos: []
+    }
+  },
   components: {
-    HelloWorld
+    'amiibos-list': AmiibosList
+  },
+  async mounted() {
+    const res = await fetch('https://www.amiiboapi.com/api/amiibo/')
+    const data = await res.json()
+    this.amiibos = data.amiibo
+    const uniqueSeries = [...new Set(this.amiibos.map(item => item.amiiboSeries))]
+    console.log(uniqueSeries)
+    // const uniqueCharacter = [...new Set(this.amiibos.map(item => item.character))]
+    // console.log(uniqueCharacter)
+    // const uniqueName = [...new Set(this.amiibos.map(item => item.name))]
+    // console.log(uniqueName)
+    const uniqueType = [...new Set(this.amiibos.map(item => item.type))]
+    console.log(uniqueType)
+    console.log(this.amiibos[603].name)
+
   }
 }
 </script>
