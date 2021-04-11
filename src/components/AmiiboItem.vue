@@ -1,6 +1,6 @@
 <template>
   <section>
-      <div @click="handleClick" id="list_item">
+      <div  @click="handleClick" id="list_item">
       {{amiibo.name}} from {{amiibo.amiiboSeries}}
       <img :src="amiibo.image" alt="amiibo_image">
       </div>
@@ -28,12 +28,27 @@ img {
 }
 
 #list_item {
-    border-style: solid;
-    border-width: 1px;
+    /* border-style: solid;
+    border-width: 1px; */
     margin: auto;
-    margin-top: 2px;
-    width:500px;
 
+    width: auto;
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+}
+    
+#text {
+    text-align:center;
+    font-weight: bold;
+}
+
+
+
+#list_item:hover {
+    background-color: rgba(10,10,10,0.1);
+    cursor: pointer;
+    /* transform: scale(1.5); */
 }
 
 </style>

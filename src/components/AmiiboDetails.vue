@@ -58,28 +58,29 @@ export default {
 
 <style scoped>
 img {
-    width:150px;
+    max-width:200px;
 }
 
 #details-wrapper {
+    box-shadow:15px 15px 15px rgba(0,0,0,0.5);
+    border-collapse: collapse;
+    border-radius: 15px;
+    width: 600px;
     
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  
+  
   
   text-align: center;
 }
 
 #inside-wrapper {
     display: flex;
-    margin-right: auto;
-    margin-left: auto;
     align-items: center;
     justify-content: center;
-    background-color: wheat;
-    width:500px;
+    background-color: rgba(255,240,199,0.8);
     border: solid 1px black;
+    border-radius: 15px;
+    padding:15px;
 }
 
 #release-dates {
